@@ -1,7 +1,7 @@
 
 # Hemingway Editor to MD
 
-Yes I know, the Hemingway Editor will output to MD, but you have to do it
+Yes I know, the [Hemingway Editor](https://hemingwayapp.com) will output to MD, but you have to do it
 everytime. And if you are like me you want to use the output in a different
 system (e.g. leanpub). This convertor will parse a Hemingway Editor file
 and attempt to output Markdown (compatible with Leanpub).
