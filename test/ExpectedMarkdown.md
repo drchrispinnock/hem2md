@@ -10,40 +10,16 @@
 
 
 
-L: ||
-M: |A paragraph in italics.|
-R: ||
 *A paragraph in italics.*
 
-L: ||
-M: |A paragraph in bold and italics.|
-R: ||
-L: |*A|
-M: | paragraph in bold and italics.*|
-R: ||
 *A** paragraph in bold and italics.***
 
-L: ||
-M: |A paragraph in bold|
-R: ||
 **A paragraph in bold**
 
 A regular statement. 
 
-L: |This paragraph has both |
-M: |italics|
-R: | and bold in it.|
-L: |This paragraph has both *italics* and |
-M: |bold|
-R: | in it.|
 This paragraph has both *italics* and **bold** in it.
 
-L: |This paragraph has both |
-M: |italics|
-R: | and bold in it. And a link too!|
-L: |This paragraph has both *italics* and |
-M: |bold|
-R: | in it. And a link too!|
 This paragraph has both *italics* and **bold** in it. And a [link](https://slashdot.org/) too!
 - Bullet 1
 - Bullet 2
