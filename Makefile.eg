@@ -1,0 +1,19 @@
+
+HEM2MD=perl /Users/chris/src/hem2md/hem2md.pl
+TARGETDIR=../manuscript
+SOURCES=$(wildcard *.hemingway)
+OBJECTS=$(patsubst %.hemingway, %.md, $(SOURCES))
+
+%.md:	%.hemingway
+	@${HEM2MD} $< > $@
+
+all: $(OBJECTS)
+
+clean:
+	rm -f $(OBJECTS)
+
+install: all
+	@for i in *.md; do \
+                echo "Installing $$i";          \
+                cp $$i ${TARGETDIR}; done
+

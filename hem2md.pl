@@ -60,7 +60,7 @@ for my $k (@$bl_hd) {
 		#	print "R: |$right|\n";
 
 			if ($i_style eq 'ITALIC') {
-				$char='_';
+				$char='*';
 				$accum=$accum+2;
 			} elsif ($i_style eq 'BOLD') {
 				$char='**';
