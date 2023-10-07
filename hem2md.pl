@@ -50,16 +50,17 @@ for my $k (@$bl_hd) {
 			my $i_length = $i->{'length'};
 			my $i_offset = $i->{'offset'};
 		
+			# XXX this does not work for overlaps
 			my $left = substr($text, 0, $i_offset+$accum);
 			my $middle = substr($text, $i_offset+$accum, $i_length);
 			my $right = substr($text, $i_offset+$i_length+$accum);
 
-			print "L: |$left|\n";
-			print "M: |$middle|\n";
-			print "R: |$right|\n";
+		#	print "L: |$left|\n";
+		#	print "M: |$middle|\n";
+		#	print "R: |$right|\n";
 
 			if ($i_style eq 'ITALIC') {
-				$char='*';
+				$char='_';
 				$accum=$accum+2;
 			} elsif ($i_style eq 'BOLD') {
 				$char='**';
