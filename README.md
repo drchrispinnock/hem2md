@@ -9,3 +9,9 @@ and attempt to output Markdown (compatible with Leanpub).
 If you use the git format for leanpub, you can have your hemingway files
 in a directory called hemingway and use the example Makefile.
 
+Caveats:
+
+- This filter will use * for italics, not _. (Hemingway extracts use _).
+- Text in both bold and italics will not currently convert (Bug)
+- We've only filtered scenarios we have seen coming from Hemingway files. There may be scenarios not covered
+

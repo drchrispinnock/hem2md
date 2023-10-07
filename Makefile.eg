@@ -5,6 +5,7 @@ SOURCES=$(wildcard *.hemingway)
 OBJECTS=$(patsubst %.hemingway, %.md, $(SOURCES))
 
 %.md:	%.hemingway
+	@echo "Building $@"
 	@${HEM2MD} $< > $@
 
 all: $(OBJECTS)
