@@ -2,7 +2,7 @@
 
 use strict;
 use JSON;
-use Data::Dumper;
+#use Data::Dumper;
 
 die unless (@ARGV);
 
@@ -116,5 +116,4 @@ for my $k (@$bl_hd) {
 
 	print "$text\n";
 }
-# Types
 

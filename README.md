@@ -9,6 +9,10 @@ and attempt to output Markdown (compatible with Leanpub).
 If you use the git format for leanpub, you can have your hemingway files
 in a directory called hemingway and use the example Makefile.
 
+To use, install the perl JSON module. No awards will be won for this script.
+
+Ming Vase license - if it breaks you get to keep the pieces.
+
 Caveats:
 
 - This filter will use * for italics, not _. (Hemingway extracts use _).
