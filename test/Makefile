@@ -13,5 +13,7 @@ clean:
 	rm -f $(OBJECTS)
 
 test: all
-	@diff -u ExpectedMarkdown.md Test.md
+	@echo "Comparing with expected result"
+	@diff -u ExpectedMarkdown.md Test.md && echo "OK"
+	
 	
