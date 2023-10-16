@@ -1,0 +1,28 @@
+
+# In your leanpub git repos, make the following directories:
+# - manuscript (for the leanpub files)
+# - hemingway (for the hemingway sources)
+#
+# Place this Makefile in the hemingway directory. It will build
+# markdown in the manuscript folder.
+
+#HEM2MD=hem2md
+HEM2MD=perl ~/src/hem2md/hem2md.pl
+TARGETDIR=../manuscript
+SOURCES=$(wildcard *.hemingway)
+OBJECTS=$(patsubst %.hemingway, %.md, $(SOURCES))
+
+%.md:	%.hemingway
+	@echo "Building $@"
+	@${HEM2MD} $< > $@
+
+all: $(OBJECTS)
+
+clean:
+	rm -f $(OBJECTS)
+
+install: all
+	@for i in *.md; do \
+                echo "Installing $$i";          \
+                cp $$i ${TARGETDIR}; done
+
