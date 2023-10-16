@@ -7,3 +7,6 @@ all: hem2md.pl
 install:
 	@mkdir -p ${BINDIR}
 	@install hem2md ${BINDIR}
+
+clean:
+	@rm hem2md
