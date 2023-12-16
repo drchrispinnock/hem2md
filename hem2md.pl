@@ -29,39 +29,42 @@ for my $k (@$bl_hd) {
 	my $type = $k->{'type'};
 	my $text = $k->{'text'};
 
+	my @offset;
+	my @do;
+	my $idx = 0;
+
 	if ($text) {
 	
-		# Adjust inline styles for bold and italic
+		my $idx = 0;
+		
+		# Find inline styles offsets for bold and italic
 		#
 		my $inl = $k->{'inlineStyleRanges'};
 		my $accum = 0; # The string shifts as we go...
 
 		for my $i (@$inl) {
 
-			my $char = '';
 			my $i_style = $i->{'style'};
 			my $i_length = $i->{'length'};
 			my $i_offset = $i->{'offset'};
-		
-			# XXX this does not work for overlaps
-			my $left = substr($text, 0, $i_offset+$accum);
-			my $middle = substr($text, $i_offset+$accum, $i_length);
-			my $right = substr($text, $i_offset+$i_length+$accum);
 
+			$offset[$idx] = $i_offset ;
+			$offset[$idx+1] = $i_offset + $i_length;
 			if ($i_style eq 'ITALIC') {
-				$char='*';
-				$accum=$accum+2;
+				$do[$idx] = "*";
+				$do[$idx+1] = "*";
 			} elsif ($i_style eq 'BOLD') {
-				$char='**';
-				$accum=$accum+4;
+				$do[$idx] = "**";
+				$do[$idx+1] = "**";
 			} else {
 				warn "Unknown style $i_style!\n";
 			}
-			$text = "$left$char$middle$char$right";
 
+			$idx++;
+			$idx++;
 		}
 
-		# Links are done in the entitymap
+		# Find Link offsets
 		#
 		my $entr = $k->{'entityRanges'};
 		for my $e (@$entr) {
@@ -73,24 +76,38 @@ for my $k (@$bl_hd) {
 			next unless $entitymap->{$e_key}->{'type'};
 			my $e_type = $entitymap->{$e_key}->{'type'};
 
+			$offset[$idx] = $e_offset ;
+			$offset[$idx+1] = $e_offset + $e_length;
+
 			if ($e_type eq 'LINK') {
 				my $link = $entitymap->{$e_key}->{'data'}->{'href'};
-				# Adjust text to use the link
-				#
-				my $left = substr($text, 0, $e_offset+$accum);
-				my $middle = substr($text, $e_offset+$accum, $e_length);
-				my $right = substr($text, $e_offset+$e_length+$accum);
-				
-				$text = "$left\[$middle\]\($link\)$right";
-				$accum=$accum+4+length($link);
+					
+				$do[$idx] = "[";
+				$do[$idx+1] = "]\($link\)";
 
 			} else {
 
 				warn "Unknown entity type $e_type\n";
 
 			}
-
+			$idx++;
+			$idx++;
 		}
+
+		# Go through the string byte by byte and insert formatting
+		#
+		my $newtext;
+		for (my $i = 0; $i <= length($text); $i++) {
+			my $byte="";
+			$byte = substr $text, $i, 1  if $i < length($text);
+			for (my $j = 0; $j<(@offset); $j++) {
+				$newtext = $newtext.$do[$j] if $offset[$j] == $i;
+			}
+			$newtext = $newtext.$byte;
+
+		}	
+
+		$text = $newtext;
 
 		print "# " if $type eq 'header-one';
 		print "## " if $type eq 'header-two';
