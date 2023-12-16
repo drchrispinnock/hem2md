@@ -31,7 +31,7 @@ As part of the acceptance process of giving up, I'm leaving on a high as far as 
 - A significant quantity of Barley Wine 2022. I will enter this in competitions and put it in beef stews as appropriate.
 - Two bottles of Barley Wine 2020. These will disappear over Christmas
 
-*(Mike D took the photo at the County Beermakers in November 2023. The tasting notes will be part of a forthcoming article in Z[ymurgy ](https://www.homebrewersassociation.org/zymurgy-magazine/)magazine. This article follows on from t[his one.](https://chrispinnock.com/2021/02/17/an-experiment-with-barley-wine/))*
+*(Mike D took the photo at the County Beermakers in November 2023. The tasting notes will be part of a forthcoming article in [Zymurgy](https://www.homebrewersassociation.org/zymurgy-magazine/) magazine. This article follows on from [this one](https://chrispinnock.com/2021/02/17/an-experiment-with-barley-wine/).)*
 
 
 

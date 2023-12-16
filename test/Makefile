@@ -14,7 +14,7 @@ clean:
 
 test: all
 	@echo "Comparing with expected result"
-	@diff -u ExpectedMarkdown.md Test.md && echo "OK"
-	@diff -u Expectedbroken.md broken.md && echo "OK"
+	@diff -u ExpectedTest.md Test.md && echo "OK"
+	@diff -u ExpectedBroken.md Broken.md && echo "OK"
 	
 	

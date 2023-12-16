@@ -12,7 +12,7 @@
 
 *A paragraph in italics.*
 
-*A** paragraph in bold and italics.***
+***A paragraph in bold and italics.***
 
 **A paragraph in bold**
 
