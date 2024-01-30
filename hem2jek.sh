@@ -10,7 +10,7 @@ TYPE="post"
 
 while [ $# -gt 0 ]; do
         case $1 in
-        -d)     TYPE="draft";
+        -d)     TYPE="draft" ;;
         -*)     usage; ;;
         *)      break; # rest of args are targets
         esac
@@ -39,13 +39,16 @@ $hmd "$file" > "$tmpfile"
 #
 title="$(grep '^#' "$tmpfile" | sed -e 's/^#[ \t]*//g')"
 
-echo "Title: $title"
+
 #jekyll post "$title"
 post=$($jekyll $TYPE "$title")
 [ "$?" != "0" ] && echo "jekyll failed" && exit 1
-post=$(echo "$post" | grep '^New post created' | \
-    sed -e 's/New post created at //g' -e's/[ \t]*$//' | ansi2txt)
-echo "Post:  $post"
+post=$(echo "$post" | grep "^New $TYPE created" | \
+    sed -e "s/New $TYPE created at //g" -e's/[ \t]*$//' | ansi2txt)
+
 [ ! -f "$post" ] && echo "jekyll failed" && exit 1
+
+echo "Title: $title"
+echo "Post:  $post"
 
 grep -v '^#' $tmpfile >> $post
