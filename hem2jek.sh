@@ -32,6 +32,8 @@ fi
 which ansi2txt 2>&1 >/dev/null
 [ "$?" != "0" ] && echo "cannot find ansi2txt in path" && exit 1
 
+[ ! -f "_config.yml" ] && echo "am I in a jekyll installation? cannot find config" && exit 1
+
 tmpfile="$(mktemp /tmp/hemXXXX)"
 $hmd "$file" > "$tmpfile"
 
