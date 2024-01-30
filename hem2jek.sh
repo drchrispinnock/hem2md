@@ -35,7 +35,7 @@ which ansi2txt 2>&1 >/dev/null
 [ ! -f "_config.yml" ] && echo "am I in a jekyll installation? cannot find config" && exit 1
 
 tmpfile="$(mktemp /tmp/hemXXXX)"
-$hmd "$file" > "$tmpfile"
+$hmd -n "$file" > "$tmpfile"
 
 # Get the title
 #
