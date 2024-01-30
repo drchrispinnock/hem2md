@@ -1,12 +1,18 @@
 
-BINDIR=~/bin
+BINDIR=${HOME}/bin
+TARGETS=    hem2jek hem2md
 
-all: hem2md.pl
+all: ${TARGETS}
+
+hem2jek: hem2jek.sh
+	@sed -e "s|@BINDIR@|${BINDIR}|g" hem2jek.sh > hem2jek
+
+hem2md: hem2md.pl
 	@cp hem2md.pl hem2md && chmod +x hem2md
 
-install:
+install: all
 	@mkdir -p ${BINDIR}
-	@install hem2md ${BINDIR}
+	@install ${TARGETS} ${BINDIR}
 
 clean:
-	@rm hem2md
+	@rm ${TARGETS}
