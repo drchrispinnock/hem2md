@@ -4,8 +4,8 @@
 Ming Vase license - if it breaks you get to keep the pieces. No awards will be won for this work.
 
 Yes I know, the [Hemingway Editor](https://hemingwayapp.com) will output to markdown, but you have to do it
-every time. And if you are like me you want to use the output in a different
-system (e.g. [Leanpub](https://leanpub.com). This convertor will parse a Hemingway Editor file
+every time. And if you are like me, you might want to use the output in a different
+system (e.g. [Leanpub](https://leanpub.com)). This convertor will parse a Hemingway Editor file
 and attempt to output Markdown (compatible with Leanpub).
 
 If you use the git editing method for Leanpub, you can have your Hemingway files
