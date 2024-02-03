@@ -13,7 +13,7 @@ in a directory called hemingway and use the example Makefile supplied here.
 
 ## hem2md
 
-To use, install the perl JSON module. The following converts an Hemingway file into markdown. 
+To use, install the perl JSON module. The following converts an Hemingway file into markdown. Unfortunately it does not work very well with non-Latin character sets (which is annoying if you are writing books on... non-Latin character sets, like me). I may look at reimplementing this in Go which makes such things a lot easier.
 
 ```
 hem2md 20240130-February.hemingway >> myoutput.md
