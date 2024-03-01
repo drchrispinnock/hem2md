@@ -39,7 +39,7 @@ $hmd -n "$file" > "$tmpfile"
 
 # Get the title
 #
-title="$(grep '^#' "$tmpfile" | sed -e 's/^#[ \t]*//g')"
+title="$(grep '^#' "$tmpfile" | head -1 | sed -e 's/^#[ \t]*//g')"
 
 
 #jekyll post "$title"
