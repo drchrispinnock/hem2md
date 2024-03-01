@@ -69,6 +69,11 @@ for my $k (@$bl_hd) {
 			} elsif ($i_style eq 'BOLD') {
 				$do[$idx] = "**";
 				$do[$idx+1] = "**";
+			} elsif ($i_style eq 'CODE') {
+			 	#  Do nothing for now
+				$do[$idx] = "";
+				$do[$idx+1] = "";
+
 			} else {
 				warn "Unknown style $i_style!\n";
 			}
