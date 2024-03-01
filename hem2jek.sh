@@ -53,4 +53,4 @@ post=$(echo "$post" | grep "^New $TYPE created" | \
 echo "Title: $title"
 echo "Post:  $post"
 
-grep -v '^#' $tmpfile >> $post
+grep -v '^# ' $tmpfile >> $post
