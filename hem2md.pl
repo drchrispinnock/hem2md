@@ -115,8 +115,10 @@ for my $k (@$bl_hd) {
 		# Go through the string byte by byte and insert formatting
 		#
 		my $newtext;
+		
 		for (my $i = 0; $i <= length($text); $i++) {
 			my $byte="";
+
 			$byte = substr $text, $i, 1  if $i < length($text);
 			for (my $j = 0; $j<(@offset); $j++) {
 				$newtext = $newtext.$do[$j] if $offset[$j] == $i;
