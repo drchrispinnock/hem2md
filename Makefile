@@ -1,7 +1,6 @@
 
 BINDIR=${HOME}/bin
-TARGETS=    hem2jek hem2md hem2md_go
-#TARGETS=    hem2jek hem2md
+TARGETS=    hem2jek hem2md
 
 all: ${TARGETS}
 

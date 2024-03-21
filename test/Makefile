@@ -16,5 +16,6 @@ test: all
 	@echo "Comparing with expected result"
 	@echo "Test.md" && diff -u ExpectedTest.md Test.md && echo "OK"
 	@echo "Broken.md" && diff -u ExpectedBroken.md Broken.md && echo "OK"
+	@echo "Utf.md" && diff -u ExpectedUtf.md Utf.md && echo "OK"
 	
 	

@@ -1,8 +1,11 @@
 #!/usr/bin/perl
 
 use strict;
+use utf8;
 use JSON;
 use Getopt::Std;
+
+binmode(STDOUT, ":utf8");
 
 sub usage() {
     die "Usage: $0 [-n] file";
@@ -18,7 +21,7 @@ usage unless (@ARGV);
 my $buffer;
 my $lc=1;
 
-open IN, $ARGV[0];
+open (IN, "<:encoding(UTF-8)", $ARGV[0]);
 while(<IN>) {
 	$buffer = $buffer.$_;
 }
