@@ -8,13 +8,16 @@ use Getopt::Std;
 binmode(STDOUT, ":utf8");
 
 sub usage() {
-    die "Usage: $0 [-n] file";
+    die "Usage: $0 [-nq] file";
 }
 
 my $warning=1;
+my $htmlblkquote=0;
+
 my %opts;
-usage unless getopts('n', \%opts);
+usage unless getopts('nq', \%opts);
 $warning=0 if (%opts{'n'});
+$htmlblkquote=1 if (%opts{'q'});
 
 usage unless (@ARGV);
 
@@ -150,7 +153,12 @@ for my $k (@$bl_hd) {
 			$endlist = 1 if ($endlist == 2);
 		}
 
-		print "C> " if $type eq 'blockquote';
+		if ($type eq 'blockquote') {
+
+			print "C> " if $htmlblkquote == 0;
+			$text = "<blockquote>$text</blockquote>" if $htmlblkquote == 1;
+			
+		}
 
 		if ($endlist == 1) {
 			# Ensure there is a newline to break lists
