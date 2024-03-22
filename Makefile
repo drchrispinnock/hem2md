@@ -21,4 +21,4 @@ install: all
 	@install ${TARGETS} ${BINDIR}
 
 clean:
-	@rm ${TARGETS}
+	@rm -f ${TARGETS}
