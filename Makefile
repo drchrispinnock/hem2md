@@ -12,6 +12,9 @@ hem2md: hem2md.pl
 	@echo "===> hem2md"
 	@cp hem2md.pl hem2md && chmod +x hem2md
 
+test: hem2md
+	@cd test && make test
+
 install: all
 	@echo "===> Installing in ${BINDIR}"
 	@mkdir -p ${BINDIR}
