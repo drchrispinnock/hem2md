@@ -8,14 +8,15 @@ use Getopt::Std;
 binmode(STDOUT, ":utf8");
 
 sub usage() {
-    die "Usage: $0 [-nq] file";
+    die "Usage: $0 [-nq] file\n";
 }
 
 my $warning=1;
 my $htmlblkquote=0;
 
 my %opts;
-usage unless getopts('nq', \%opts);
+usage unless getopts('nqh', \%opts);
+usage if (%opts{'h'});
 $warning=0 if (%opts{'n'});
 $htmlblkquote=1 if (%opts{'q'});
 
@@ -75,7 +76,12 @@ for my $k (@$bl_hd) {
 			} elsif ($i_style eq 'BOLD') {
 				$do[$idx] = "**";
 				$do[$idx+1] = "**";
+			} elsif ($i_style eq 'UNDERLINE') {
+				warn "Underline not implemented\n";
+				$do[$idx] = "";
+				$do[$idx+1] = "";
 			} elsif ($i_style eq 'CODE') {
+				warn "Code not implemented yet\n";
 			 	#  Do nothing for now
 				$do[$idx] = "";
 				$do[$idx+1] = "";
