@@ -77,9 +77,8 @@ for my $k (@$bl_hd) {
 				$do[$idx] = "**";
 				$do[$idx+1] = "**";
 			} elsif ($i_style eq 'UNDERLINE') {
-				warn "Underline not implemented\n";
-				$do[$idx] = "";
-				$do[$idx+1] = "";
+				$do[$idx] = "____";
+				$do[$idx+1] = "____";
 			} elsif ($i_style eq 'CODE') {
 				warn "Code not implemented yet\n";
 			 	#  Do nothing for now
