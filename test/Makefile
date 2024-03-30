@@ -14,8 +14,8 @@ clean:
 
 test: all
 	@echo "Comparing with expected result"
-	@echo "Test.md" && diff -u ExpectedTest.md Test.md && echo "OK"
-	@echo "Broken.md" && diff -u ExpectedBroken.md Broken.md && echo "OK"
-	@echo "Utf.md" && diff -u ExpectedUtf.md Utf.md && echo "OK"
-	
-	
+	@for o in $(OBJECTS); do \
+		printf "$$o: "; diff -u Expected$$o $$o >/dev/null; \
+		 	if [ "$$?" = "0" ]; then echo "OK"; else \
+				echo "FAIL"; fi; done
+
