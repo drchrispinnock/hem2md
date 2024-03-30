@@ -1,10 +1,12 @@
 #!/usr/bin/perl
 
 use strict;
+# Declare this script as UTF-8
 use utf8;
 use JSON;
 use Getopt::Std;
 
+# Declare output as UTF-8
 binmode(STDOUT, ":utf8");
 
 sub usage() {
@@ -25,6 +27,8 @@ usage unless (@ARGV);
 my $buffer;
 my $lc=1;
 
+# Parse input as UTF-8
+#
 open (IN, "<:encoding(UTF-8)", $ARGV[0]);
 while(<IN>) {
 	$buffer = $buffer.$_;
