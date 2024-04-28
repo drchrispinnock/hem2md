@@ -2,15 +2,19 @@
 
 
 usage() {
-    echo "Usage: $0 [-d] Hemmingwayfile" >&2
+    echo "Usage: $0 [-df] Hemmingwayfile" >&2
+    echo "           -d  add as a draft" >&2
+    echo "           -f  overwrite existing post" >&2
     exit 1
 }
 
 TYPE="post"
+FLAGS=""
 
 while [ $# -gt 0 ]; do
         case $1 in
         -d)     TYPE="draft" ;;
+        -f)     FLAGS="$FLAGS -f" ;;
         -*)     usage; ;;
         *)      break; # rest of args are targets
         esac
@@ -43,7 +47,7 @@ title="$(grep '^#' "$tmpfile" | head -1 | sed -e 's/^#[ \t]*//g')"
 
 
 #jekyll post "$title"
-post=$($jekyll $TYPE "$title")
+post=$($jekyll $TYPE $FLAGS "$title")
 [ "$?" != "0" ] && echo "jekyll failed" && exit 1
 post=$(echo "$post" | grep "^New $TYPE created" | \
     sed -e "s/New $TYPE created at //g" -e's/[ \t]*$//' | ansi2txt)
