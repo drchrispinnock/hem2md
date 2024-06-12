@@ -64,7 +64,6 @@ for my $k (@$bl_hd) {
 		# Find inline styles offsets for bold and italic
 		#
 		my $inl = $k->{'inlineStyleRanges'};
-		my $accum = 0; # The string shifts as we go...
 
 		for my $i (@$inl) {
 
@@ -72,8 +71,17 @@ for my $k (@$bl_hd) {
 			my $i_length = $i->{'length'};
 			my $i_offset = $i->{'offset'};
 
+			# Attempt to handle whitespace
+#
+			my $segment = substr $text, $i_offset, $i_length;
+			$segment =~ s/^\s+//;
+			$i_offset = $i_offset + $i_length - length($segment);
+			$segment =~ s/\s+$//;
+			$i_length = length($segment);
+			
 			$offset[$idx] = $i_offset ;
 			$offset[$idx+1] = $i_offset + $i_length;
+
 			if ($i_style eq 'ITALIC') {
 				$do[$idx] = "*";
 				$do[$idx+1] = "*";
@@ -88,7 +96,6 @@ for my $k (@$bl_hd) {
 			 	#  Do nothing for now
 				$do[$idx] = "";
 				$do[$idx+1] = "";
-
 			} else {
 				warn "Unknown style $i_style!\n";
 			}
