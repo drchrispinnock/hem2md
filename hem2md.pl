@@ -144,9 +144,6 @@ for my $k (@$bl_hd) {
 
 		$text = $newtext;
 
-		print "# " if $type eq 'header-one';
-		print "## " if $type eq 'header-two';
-		print "### " if $type eq 'header-three';
 		if ($type eq 'unordered-list-item') {
 			print "- " if $type eq 'unordered-list-item';
 			$endlist = 2;
@@ -161,6 +158,13 @@ for my $k (@$bl_hd) {
 			$lc=1;
 			$endlist = 1 if ($endlist == 2);
 		}
+		
+		if ($endlist == 1) {
+			# Ensure there is a newline to break lists
+			# from other text types
+			print "\n";
+			$endlist = 0;
+		}
 
 		if ($type eq 'blockquote') {
 
@@ -169,12 +173,9 @@ for my $k (@$bl_hd) {
 			
 		}
 
-		if ($endlist == 1) {
-			# Ensure there is a newline to break lists
-			# from other text types
-			print "\n";
-			$endlist = 0;
-		}
+		print "# " if $type eq 'header-one';
+		print "## " if $type eq 'header-two';
+		print "### " if $type eq 'header-three';
 
 	}
 
