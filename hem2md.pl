@@ -64,7 +64,6 @@ for my $k (@$bl_hd) {
 		# Find inline styles offsets for bold and italic
 		#
 		my $inl = $k->{'inlineStyleRanges'};
-		my $accum = 0; # The string shifts as we go...
 
 		for my $i (@$inl) {
 
