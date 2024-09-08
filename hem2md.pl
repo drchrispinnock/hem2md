@@ -15,6 +15,7 @@ sub usage() {
 
 my $warning=1;
 my $htmlblkquote=0;
+my $markua_bq = "C>";
 
 my %opts;
 usage unless getopts('nqh', \%opts);
@@ -175,7 +176,7 @@ for my $k (@$bl_hd) {
 
 		if ($type eq 'blockquote') {
 
-			print "C> " if $htmlblkquote == 0;
+			print "$markua_bq " if $htmlblkquote == 0;
 			$text = "<blockquote>$text</blockquote>" if $htmlblkquote == 1;
 			
 		}
