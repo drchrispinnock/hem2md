@@ -15,7 +15,7 @@ sub usage() {
 
 my $warning=1;
 my $htmlblkquote=0;
-my $markua_bq = "C>";
+my $markua_bq = ">";
 
 my %opts;
 usage unless getopts('nqh', \%opts);
