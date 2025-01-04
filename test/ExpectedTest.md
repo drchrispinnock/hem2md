@@ -34,7 +34,7 @@ This paragraph has a [link](https://chrispinnock.com/) in it.
 
 What about [link1](https://link1.com/) and [link2](https://link2.com/)?
 
-C> And finally a quote.
+> And finally a quote.
 
 
 
