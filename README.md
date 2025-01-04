@@ -21,6 +21,9 @@ hem2md 20240130-February.hemingway >> myoutput.md
 
 At the top of the file, there will be an HTML comment to warn that the file is automatically generated. This can be useful if you are working on a document set and are using a Makefile to process lots of Hemingway files (like me). If you supply -n it will remove the comment as sometimes it can confuse other processors.
 
+If you supply -r, hem2md will make Leanpub chapter references on the basis of the headings.
+
+
 ## hem2jek
 
 To use the Jekyll script, you need jekyll and ansi2txt from [colorized-logs](https://github.com/kilobyte/colorized-logs). Run the script in your jekyll site directory. For example, the following will parse the Hemingway file, take the title formatted with # and use that to create a jekyll post in _posts. If you supply -d you'll get a draft instead of a post.
