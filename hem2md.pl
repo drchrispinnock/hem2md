@@ -10,20 +10,22 @@ use Getopt::Std;
 binmode(STDOUT, ":utf8");
 
 sub usage() {
-    die "Usage: $0 [-nrq] file\n";
+    die "Usage: $0 [-nrmq] file\n";
 }
 
 my $references=0;
+my $markua='id: ';
 my $warning=1;
 my $htmlblkquote=0;
 my $markua_bq = ">";
 
 my %opts;
-usage unless getopts('nqrh', \%opts);
-usage if (%opts{'h'});
-$warning=0 if (%opts{'n'});
-$htmlblkquote=1 if (%opts{'q'});
-$references=1 if (%opts{'r'});
+usage unless getopts('mnqrh', \%opts);
+usage if ($opts{'h'});
+$warning=0 if ($opts{'n'});
+$htmlblkquote=1 if ($opts{'q'});
+$references=1 if ($opts{'r'});
+$markua='#' if ($opts{'m'});
 
 usage unless (@ARGV);
 
@@ -188,7 +190,12 @@ for my $k (@$bl_hd) {
 		if ($type =~ m/^header-/ && $references) {
 			my $h = lc($text);
 			$h =~ s/ /_/g;
-			print "{#".$h."}\n";
+			$h =~ s/\!//g;
+			$h =~ s/\-//g;
+			$h =~ s/\?//g;
+			$h =~ s/\,//g;
+			$h =~ s/\.//g;
+			print "{".$markua.$h."}\n";
 		}
 		print "# " if $type eq 'header-one';
 		print "## " if $type eq 'header-two';
