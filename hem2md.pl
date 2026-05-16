@@ -193,6 +193,7 @@ for my $k (@$bl_hd) {
 			my $h = lc($text);
 			$h =~ s/ /_/g;
 			my $rr = "";
+
 			if ($refs{$h}) {
 			    $refs{$h}++;
 			    warn "reference for $h already defined - using $h-$refs{$h}\n";
@@ -205,7 +206,7 @@ for my $k (@$bl_hd) {
 			$h =~ s/\?//g;
 			$h =~ s/\,//g;
 			$h =~ s/\.//g;
-			print "{".$markua.$h.$rr"}\n";
+			print "{".$markua.$h.$rr."}\n";
 		}
 		print "# " if $type eq 'header-one';
 		print "## " if $type eq 'header-two';
