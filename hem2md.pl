@@ -25,6 +25,8 @@ $warning=0 if (%opts{'n'});
 $htmlblkquote=1 if (%opts{'q'});
 $references=1 if (%opts{'r'});
 
+my %refs;
+
 usage unless (@ARGV);
 
 my $buffer;
@@ -81,7 +83,7 @@ for my $k (@$bl_hd) {
 			$i_offset = $i_offset + $i_length - length($segment);
 			$segment =~ s/\s+$//;
 			$i_length = length($segment);
-			
+
 			$offset[$idx] = $i_offset ;
 			$offset[$idx+1] = $i_offset + $i_length;
 
@@ -140,7 +142,7 @@ for my $k (@$bl_hd) {
 		# Go through the string byte by byte and insert formatting
 		#
 		my $newtext;
-		
+
 		for (my $i = 0; $i <= length($text); $i++) {
 			my $byte="";
 
@@ -168,7 +170,7 @@ for my $k (@$bl_hd) {
 			$lc=1;
 			$endlist = 1 if ($endlist == 2);
 		}
-		
+
 		if ($endlist == 1) {
 			# Ensure there is a newline to break lists
 			# from other text types
@@ -180,7 +182,7 @@ for my $k (@$bl_hd) {
 
 			print "$markua_bq " if $htmlblkquote == 0;
 			$text = "<blockquote>$text</blockquote>" if $htmlblkquote == 1;
-			
+
 		}
 
 		# Headers
@@ -188,7 +190,15 @@ for my $k (@$bl_hd) {
 		if ($type =~ m/^header-/ && $references) {
 			my $h = lc($text);
 			$h =~ s/ /_/g;
-			print "{#".$h."}\n";
+			warn "$h\n";
+			if ($refs{$h}) {
+			    $refs{$h}++;
+			    warn "reference for $h already defined - using $h-$refs{$h}\n";
+				print "{#".$h-$refs{$h}."}\n";
+			} else {
+			    print "{#".$h."}\n";
+				$refs{$h} = 0;
+			}
 		}
 		print "# " if $type eq 'header-one';
 		print "## " if $type eq 'header-two';
