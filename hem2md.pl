@@ -64,6 +64,9 @@ for my $k (@$bl_hd) {
 	my @do;
 	my $idx = 0;
 
+	my $heading1="";
+	my $heading2="";
+
 	if ($text) {
 
 		my $idx = 0;
@@ -189,29 +192,37 @@ for my $k (@$bl_hd) {
 
 		# Headers
 		#
-		if ($type =~ m/^header-/ && $references) {
+
+		if ($type =~ m/^header-/) {
+	    	my $ref_string="";
+			my $heading="# ";
+
 			my $h = lc($text);
 			$h =~ s/ /_/g;
-			my $rr = "";
-
-			if ($refs{$h}) {
-			    $refs{$h}++;
-			    warn "reference for $h already defined - using $h-$refs{$h}\n";
-			    $rr = $refs{$h};
-			} else {
-				$refs{$h} = 0;
-			}
 			$h =~ s/\!//g;
 			$h =~ s/\-//g;
 			$h =~ s/\?//g;
 			$h =~ s/\,//g;
 			$h =~ s/\.//g;
-			print "{".$markua.$h.$rr."}\n";
-		}
-		print "# " if $type eq 'header-one';
-		print "## " if $type eq 'header-two';
-		print "### " if $type eq 'header-three';
 
+			$ref_string="$h";
+
+    		if ($type eq 'header-one') {
+    		    $heading= "# ";
+    			$heading1="$h";
+    		}
+    		if ($type eq 'header-two') {
+    		    $heading="## ";
+    			$heading2="$h";
+    			$ref_string="$heading1"."_".$ref_string;
+    		}
+            if ($type eq 'header-three') {
+                $heading= "### ";
+                $ref_string="$heading1"."_".$heading2."_".$ref_string;
+            }
+			print "{".$markua.$ref_string."}\n" if $references;
+			print "$heading ";
+		}
 	}
 
 	print "$text\n";
