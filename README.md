@@ -1,6 +1,8 @@
 
 # Hemingway Editor to MD
 
+*These tools are no longer maintained. I've switched to Zed as my day-to-day editor. I use vale as my checker. My [vale files are here](https://github.com/drchrispinnock/vale_styles).*
+
 Ming Vase license - if it breaks you get to keep the pieces. No awards will be won for this work.
 
 Yes I know, the [Hemingway Editor](https://hemingwayapp.com) will output to markdown, but you have to do it
